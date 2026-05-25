@@ -126,18 +126,5 @@ npx react-native start --reset-cache   # Clear Metro cache
 npx tsc --noEmit                       # TypeScript type check
 ```
 
----
+ 
 
-## 👨‍💻 Author
-
-| | |
-|---|---|
-| **Name** | Imran Ali |
-| **Experience** | 1+ Year — React Native CLI, TypeScript, REST API Integration |
-| **Assignment** | Lobotus Technologies |
-| **Skills** | React Native · TypeScript · React Navigation · REST APIs · Git |
-| **Version** | v1.0.8 |
-
----
-
-*Built with React Native CLI + TypeScript*
