@@ -1,97 +1,143 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📱 MetricInfo
 
-# Getting Started
+> **Field Sales & Attendance Management App**
+> React Native CLI · TypeScript · v1.0.8
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+![React Native](https://img.shields.io/badge/React%20Native-0.73+-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![React Navigation](https://img.shields.io/badge/React%20Navigation-v6-6C3FC5?style=flat-square)
+![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-22A96A?style=flat-square)
+![Version](https://img.shields.io/badge/Version-1.0.8-E08C1A?style=flat-square)
 
-## Step 1: Start Metro
+---
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 📋 Overview
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+**MetricInfo** is a production-grade field sales and attendance management app for field executives. Manage client visits, track daily attendance, and handle sales activities — all from one fast, clean mobile app.
 
-```sh
-# Using npm
-npm start
+---
 
-# OR using Yarn
-yarn start
+## ✨ Features
+
+| Screen | Key Features |
+|---|---|
+| 🏠 **Home** | Check-in / out toggle, duty status, current location, work hours summary, quick actions |
+| 🏢 **Companies** | Paginated client list, live search, infinite scroll, nearby filter, FAB to add company |
+| 📅 **Attendance** | Calendar grid, colour-coded statuses, tap-to-view day details, monthly summary |
+
+**Attendance status colours:**
+
+| Status | Colour |
+|---|---|
+| ✅ Present | Green |
+| ❌ Absent | Red |
+| 🌓 Half Day | Amber |
+| 🏖️ Leave | Blue |
+| 🎉 Holiday | Purple |
+
+---
+
+## 🗂️ Project Structure
+
+```
+MetricInfo/
+├── App.tsx                            ← Entry point
+└── src/
+    ├── config/
+    │   └── constants.ts               ← Colors, radii, base URL, pagination
+    ├── utils/
+    │   └── dateUtils.ts               ← getMonthRange, formatDisplayDate, todayISO
+    ├── services/
+    │   └── api.ts                     ← fetchClientList, fetchAttendance, normalizeArray
+    ├── components/
+    │   └── index.tsx                  ← LoadingView, ErrorView, EmptyView, ClientCard, AttendanceCard
+    ├── screens/
+    │   ├── HomeScreen.tsx             ← Dashboard
+    │   ├── CompanyScreen.tsx          ← Client list
+    │   └── AttendanceScreen.tsx       ← Calendar + details
+    └── navigation/
+        └── AppNavigator.tsx           ← Bottom tab navigator (5 tabs)
 ```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## 🛠️ Tech Stack
 
-### Android
+| Package | Purpose |
+|---|---|
+| `react-native` | Cross-platform iOS & Android framework |
+| `typescript` | Static typing and interfaces |
+| `@react-navigation/native` | NavigationContainer |
+| `@react-navigation/bottom-tabs` | 5-tab bottom navigator |
+| `react-native-screens` | Native screen optimisation |
+| `react-native-safe-area-context` | Notch & home bar support |
+| `react-native-gesture-handler` | Swipe & gesture navigation |
 
-```sh
-# Using npm
-npm run android
+---
 
-# OR using Yarn
-yarn android
+## 🚀 Installation
+
+```bash
+# 1 — Install navigation + native packages
+npm install @react-navigation/native @react-navigation/bottom-tabs \
+  react-native-screens react-native-safe-area-context \
+  react-native-gesture-handler
+
+# 2 — TypeScript dev dependencies
+npm install --save-dev typescript @types/react @types/react-native
+
+# 3 — iOS pods
+cd ios && pod install && cd ..
+
+# 4 — Run
+npx react-native run-android
+npx react-native run-ios
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## 🌐 API Reference
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+**Base URL:** `https://apex.metricinfo.com/ords/accounts`
 
-```sh
-bundle install
+| Endpoint | Method | Description |
+|---|---|---|
+| `/clientlist/getclient` | GET | Paginated client list for an employee |
+| `/attendance/getdaywise` | GET | Day-wise attendance for a date range |
+
+**Default config:**
+
+```
+SUBSCRIPTION_ID  =  SUB22106
+USER_ID          =  177
+EMPLOYEE_ID      =  177
+ITEMS_PER_PAGE   =  20
 ```
 
-Then, and every time you update your native dependencies, run:
+---
 
-```sh
-bundle exec pod install
+## 📜 Scripts
+
+```bash
+npm start                              # Start Metro bundler
+npx react-native run-android           # Run on Android
+npx react-native run-ios               # Run on iOS
+npx react-native start --reset-cache   # Clear Metro cache
+npx tsc --noEmit                       # TypeScript type check
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+---
 
-```sh
-# Using npm
-npm run ios
+## 👨‍💻 Author
 
-# OR using Yarn
-yarn ios
-```
+| | |
+|---|---|
+| **Name** | Imran Ali |
+| **Experience** | 1+ Year — React Native CLI, TypeScript, REST API Integration |
+| **Assignment** | Lobotus Technologies |
+| **Skills** | React Native · TypeScript · React Navigation · REST APIs · Git |
+| **Version** | v1.0.8 |
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+*Built with React Native CLI + TypeScript*
